@@ -6,7 +6,7 @@ export default function Experience() {
       <OrbitControls makeDefault />
 
       <mesh>
-        <shpereGeometry />
+        <sphereGeometry />
         <meshNormalMaterial />
       </mesh>
     </>
