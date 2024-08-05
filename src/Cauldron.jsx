@@ -22,11 +22,11 @@ const SurfaceMaterial = shaderMaterial(
     uTime: 0,
     uSurfaceColor: new THREE.Color("#151c37"),
     uDepthColor: new THREE.Color("#ff4000"),
-    uBigWavesElevation: 0.2,
+    uBigWavesElevation: 0.12,
     uBigWavesFrequency: new THREE.Vector2(4, 4),
     uBigWavesSpeed: 0.75,
 
-    uSmallWavesElevation: 0.15,
+    uSmallWavesElevation: 0.25,
     uSmallWavesFrequency: 3.0,
     uSmallWavesSpeed: 0.2,
     uSmallIterations: 4.0,
@@ -41,10 +41,12 @@ const SurfaceMaterial = shaderMaterial(
 extend({ SurfaceMaterial });
 
 export default function Model(props) {
-  const { nodes, materials } = useGLTF("/cauldron.glb");
+  const { nodes, materials } = useGLTF("/cauldron1.glb");
   const surfaceMaterial = useRef();
+  const surfaceMaterial2 = useRef();
   useFrame((state, delta) => {
     surfaceMaterial.current.uTime += delta * 2;
+    surfaceMaterial2.current.uTime += delta * 2;
   });
   /* console.log(surfaceMaterial);
 
@@ -121,6 +123,51 @@ export default function Model(props) {
   return (
     <>
       <color args={["#3c4e96"]} attach="background" />
+      {/* <group {...props} dispose={null}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.cauldron.geometry}
+          material={materials.cauldron}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.lip.geometry}
+          material={materials.lip}
+          position={[0, -0.012, 0]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.handle.geometry}
+          material={materials.handles}
+          position={[1.016, 0.21, 0]}
+          rotation={[0, 0, -1.254]}
+          scale={0.275}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.feet.geometry}
+          material={materials.feet}
+          position={[0.702, -0.812, -0.001]}
+          rotation={[0, 0, 0.392]}
+          scale={[0.09, 0.187, 0.187]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.surface.geometry}
+          material={nodes.surface.material}
+          position={[0, 0.744, 0]}
+          scale={0.663}
+        >
+          <surfaceMaterial ref={surfaceMaterial} />
+        </mesh>
+      </group>
+ */}
+
       <group {...props} dispose={null}>
         <mesh
           castShadow
@@ -162,6 +209,17 @@ export default function Model(props) {
           scale={0.663}
         >
           <surfaceMaterial ref={surfaceMaterial} />
+        </mesh>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.surface001.geometry}
+          material={nodes.surface.material}
+          position={[0.001, 0.766, 0.011]}
+          rotation={[-Math.PI, 1.46, -Math.PI]}
+          scale={0.663}
+        >
+          <surfaceMaterial ref={surfaceMaterial2} />
         </mesh>
       </group>
     </>
