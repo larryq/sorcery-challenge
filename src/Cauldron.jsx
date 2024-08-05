@@ -1,4 +1,9 @@
-import { OrbitControls, useGLTF, shaderMaterial } from "@react-three/drei";
+import {
+  OrbitControls,
+  useGLTF,
+  shaderMaterial,
+  Sparkles,
+} from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useRef } from "react";
@@ -39,7 +44,7 @@ export default function Model(props) {
   const { nodes, materials } = useGLTF("/cauldron.glb");
   const surfaceMaterial = useRef();
   useFrame((state, delta) => {
-    surfaceMaterial.current.uTime += delta;
+    surfaceMaterial.current.uTime += delta * 2;
   });
   /* console.log(surfaceMaterial);
 

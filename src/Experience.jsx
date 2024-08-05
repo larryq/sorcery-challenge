@@ -4,11 +4,15 @@ import {
   shaderMaterial,
   Environment,
   Sparkles,
+  Sky,
+  Clouds,
+  Cloud,
 } from "@react-three/drei";
 import Cauldron from "./Cauldron";
 import surfaceVertexShader from "./shaders/vertex.glsl";
 import surfaceFragmentShader from "./shaders/fragment.glsl";
 import GUI from "lil-gui";
+import * as THREE from "three";
 
 export default function Experience() {
   const cauldron = useGLTF("/cauldron.glb");
@@ -34,6 +38,16 @@ export default function Experience() {
         speed={0.2}
         count={40}
       />
+      <Clouds material={THREE.MeshBasicMaterial}>
+        <Cloud
+          seed={1}
+          scale={3}
+          volume={9}
+          color="violet"
+          fade={100}
+          speed={3}
+        />
+      </Clouds>
     </>
   );
 }
